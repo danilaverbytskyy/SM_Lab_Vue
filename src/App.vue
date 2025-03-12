@@ -1,0 +1,58 @@
+<script setup>
+import { ref } from "vue";
+import Menubar from 'primevue/menubar';
+import {usePrimeVue} from "primevue/config";
+
+const locale = usePrimeVue().config.locale;
+
+const items = ref([
+    {
+        label: locale.goHome,
+        icon: 'pi pi-palette',
+        route: '/'
+    },
+    {
+        label: locale.about,
+        icon: 'pi pi-link',
+        route: '/about'
+    },
+    {
+        label: locale.addArticle,
+        icon: 'pi pi-home',
+        route: '/new'
+    }
+]);
+</script>
+
+<template>
+  <h1>{{locale.articleTitle}}</h1>
+  <p>
+    <strong>Current route path:</strong> {{ $route.fullPath }}
+  </p>
+  <div class="card">
+        <Menubar :model="items">
+            <template #item="{ item, props, hasSubmenu }">
+                <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
+                    <a v-ripple :href="href" v-bind="props.action" @click="navigate">
+                        <span :class="item.icon" />
+                        <span>{{ item.label }}</span>
+                    </a>
+                </router-link>
+                <a v-else v-ripple :href="item.url" :target="item.target" v-bind="props.action">
+                    <span :class="item.icon" />
+                    <span>{{ item.label }}</span>
+                    <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down" />
+                </a>
+            </template>
+        </Menubar>
+    </div>
+  <main>
+    <RouterView></RouterView>
+  </main>
+</template>
+
+<style scoped>
+h1 {
+  margin: 40px 0 0;
+}
+</style>
