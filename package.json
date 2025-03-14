@@ -10,15 +10,18 @@
   },
   "dependencies": {
     "@primeuix/themes": "^1.0.0",
-    "@primevue/forms": "^4.3.1",
+    "@primevue/forms": "^4.3.2",
+    "@vee-validate/zod": "^4.15.0",
     "axios": "^1.8.1",
     "pinia": "^3.0.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.3.1",
     "tailwindcss-primeui": "^0.5.1",
+    "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
     "vue-axios": "^3.5.2",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

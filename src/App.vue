@@ -2,8 +2,10 @@
 import { ref } from "vue";
 import Menubar from 'primevue/menubar';
 import {usePrimeVue} from "primevue/config";
+import {useToast} from "primevue/usetoast";
 
 const locale = usePrimeVue().config.locale;
+const toast = useToast();
 
 const items = ref([
     {
@@ -26,9 +28,6 @@ const items = ref([
 
 <template>
   <h1>{{locale.articleTitle}}</h1>
-  <p>
-    <strong>Current route path:</strong> {{ $route.fullPath }}
-  </p>
   <div class="card">
         <Menubar :model="items">
             <template #item="{ item, props, hasSubmenu }">

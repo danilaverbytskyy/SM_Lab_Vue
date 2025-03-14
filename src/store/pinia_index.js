@@ -53,6 +53,11 @@ export const useArticlesStore = defineStore('articles', {
       if (article) {
         article.isPublished = isPublished;
       }
-    }
+    },
+
+    addArticle(article) {
+      article.id = this.articles.length + 1;
+      this.articles.push(article);
+    },
   },
 });

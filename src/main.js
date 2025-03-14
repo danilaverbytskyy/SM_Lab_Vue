@@ -16,11 +16,10 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
-import { useConfirm } from "primevue/useconfirm";
-import { defineComponent, onMounted } from "vue";
-import { usePrimeVue } from "primevue/config";
+import {Form, FormField} from '@primevue/forms';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import {Checkbox, DatePicker, FloatLabel, Message, Textarea} from "primevue";
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -29,7 +28,8 @@ app.directive('ripple', Ripple);
 app.use(VueAxios, axios);
 app.provide('axios', axios);
 app.use(router).use(pinia);
-
+app.use(ToastService);
+app.use(ConfirmationService);
 
 app.use(PrimeVue, {
     theme: {
@@ -50,10 +50,16 @@ app.component('Menubar', Menubar);
 app.component('Toast', Toast);
 app.component('ConfirmDialog', ConfirmDialog)
 app.component('Button', Button)
-app.use(ToastService);
-app.use(ConfirmationService);
 app.component('InputText', InputText);
 app.component('Dialog', Dialog);
+app.component('Form', Form);
+app.component('FloatLabel', FloatLabel)
+app.component('Message', Message)
+app.component('DatePicker', DatePicker)
+app.component('Checkbox', Checkbox)
+app.component('Textarea', Textarea)
+app.component('FormField', FormField)
+app.component('Dialog', Dialog)
 
 const store = useArticlesStore();
 // store.fetchArticles();
