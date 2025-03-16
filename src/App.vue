@@ -46,7 +46,8 @@ const items = ref([
         </Menubar>
     </div>
   <main>
-    <RouterView></RouterView>
+    <RouterView />
+      <Toast />
   </main>
 </template>
 

@@ -1,9 +1,20 @@
 <script setup>
-import {defineProps, onMounted, ref} from 'vue';
+import {defineProps, onMounted, ref, watch} from 'vue';
 import {useArticlesStore} from '../store/pinia_index.js';
 import {usePrimeVue} from "primevue/config";
 import {useToast} from "primevue/usetoast";
+import {useRoute} from "vue-router";
 
+
+const route = useRoute();
+
+const toastParams = ref(route.query.toastParams ? JSON.parse(route.query.toastParams) : null);
+
+if (toastParams.value) {
+  useToast().add(toastParams.value);
+  toastParams.value = null;
+  route.query.toastParams = null;
+}
 
 const locale = usePrimeVue().config.locale;
 const store = useArticlesStore();
@@ -11,7 +22,6 @@ const isLoading = ref(true);
 const isCancelled = ref(false);
 const visible = ref(false);
 
-const toast = useToast();
 
 const loadArticles = async () => {
   try {
