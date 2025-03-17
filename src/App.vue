@@ -28,7 +28,7 @@ const items = ref([
 
 <template>
   <h1>{{locale.articleTitle}}</h1>
-  <div class="card">
+  <div class="card-strict flex justify-content-center">
         <Menubar :model="items">
             <template #item="{ item, props, hasSubmenu }">
                 <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>

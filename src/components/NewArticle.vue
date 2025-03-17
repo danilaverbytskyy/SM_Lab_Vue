@@ -52,8 +52,8 @@ const onFormSubmit = ({valid}) => {
       },
     });
   } else {
-    console.log('Form is invalid');
-    toast.add({severity: 'error', summary: 'Form is not valid.', life: 3000});
+    console.log('Статья не добавлена');
+    toast.add({severity: 'error', summary: 'Статья не добавлена.', life: 3000});
   }
 };
 
@@ -61,7 +61,6 @@ const visible = ref(false);
 </script>
 
 <template>
-  <Toast/>
   <Button label="Add Article" @click="visible = true"/>
   <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '50rem' }"
           :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">

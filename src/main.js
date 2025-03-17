@@ -19,7 +19,8 @@ import Toast from 'primevue/toast';
 import {Form, FormField} from '@primevue/forms';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
-import {Checkbox, DatePicker, FloatLabel, Message, Textarea} from "primevue";
+import Carousel from 'primevue/carousel';
+import {Checkbox, Column, DataTable, DatePicker, FloatLabel, Message, OrderList, Tag, Textarea} from "primevue";
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -60,6 +61,11 @@ app.component('Checkbox', Checkbox)
 app.component('Textarea', Textarea)
 app.component('FormField', FormField)
 app.component('Dialog', Dialog)
+app.component('Carousel', Carousel)
+app.component('DataTable', DataTable)
+app.component('Column', Column)
+app.component('OrderList', OrderList)
+app.component('Tag', Tag)
 
 const store = useArticlesStore();
 // store.fetchArticles();

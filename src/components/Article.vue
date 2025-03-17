@@ -51,7 +51,7 @@ const confirm1 = () => {
       toast.add({severity: 'info', summary: 'Принято', detail: 'Статус статьи изменен', life: 3000});
     },
     reject: () => {
-      toast.add({severity: 'error', summary: 'Отклонено', detail: 'Изменения отклонены', life: 3000});
+      toast.add({severity: 'error', summary: 'Отклонено', detail: 'Изменения отменены', life: 3000});
     }
   });
 };
