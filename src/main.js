@@ -20,7 +20,7 @@ import {Form, FormField} from '@primevue/forms';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Carousel from 'primevue/carousel';
-import {Checkbox, Column, DataTable, DatePicker, FloatLabel, Message, OrderList, Tag, Textarea} from "primevue";
+import {Card, Checkbox, Column, DataTable, DatePicker, FloatLabel, Message, OrderList, Tag, Textarea} from "primevue";
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -66,6 +66,7 @@ app.component('DataTable', DataTable)
 app.component('Column', Column)
 app.component('OrderList', OrderList)
 app.component('Tag', Tag)
+app.component('Card', Card)
 
 const store = useArticlesStore();
 // store.fetchArticles();

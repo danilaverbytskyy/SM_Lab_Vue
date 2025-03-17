@@ -20,7 +20,6 @@ const locale = usePrimeVue().config.locale;
 const store = useArticlesStore();
 const isLoading = ref(true);
 const isCancelled = ref(false);
-const visible = ref(false);
 
 
 const loadArticles = async () => {
