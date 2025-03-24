@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 450;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -87,4 +87,34 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+:root {
+  --primary-color: #4CAF50;
+  --primary-color-text: #ffffff;
+  --surface-a: #ffffff;
+  --surface-b: #f8f9fa;
+  --text-color: #2c3e50;
+  --font-family: 'Inter', sans-serif;
+
+  --font-size: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+.p-menubar {
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
+}
+
+.p-button {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color-text);
 }

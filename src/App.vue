@@ -33,7 +33,7 @@ const items = ref([
     route: '/about'
   },
   {
-    label: 'Add Article',
+    label: locale.add_new_article_text2,
     icon: 'pi pi-plus',
     command: () => {
       resetForm();
@@ -127,7 +127,7 @@ const visible = ref(false);
     <Toast/>
   </main>
 
-  <Dialog v-model:visible="visible" modal header="Add Article" :style="{ width: '50rem' }"
+  <Dialog v-model:visible="visible" modal header="Добавить статью" :style="{ width: '50rem' }"
           :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
     <div class="card flex justify-center">
       <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit"
@@ -136,7 +136,7 @@ const visible = ref(false);
           <FormField v-slot="$field" name="title" initialValue="" class="flex flex-col gap-1">
             <FloatLabel variant="on">
               <InputText name="title" type="text" fluid id="on_label" v-model="title"/>
-              <label for="on_label">Title</label>
+              <label for="on_label">{{ locale.title_text }}</label>
               <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">
                 {{ $field.error?.message }}
               </Message>
@@ -148,7 +148,7 @@ const visible = ref(false);
           <FormField v-slot="$field" name="author" initialValue="" class="flex flex-col gap-1">
             <FloatLabel variant="on">
               <InputText name="author" type="text" fluid id="on_label" v-model="author"/>
-              <label for="on_label">Author</label>
+              <label for="on_label">{{ locale.author_text }}</label>
               <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">
                 {{ $field.error?.message }}
               </Message>
@@ -162,7 +162,7 @@ const visible = ref(false);
               <DatePicker dateFormat="dd/mm/yy" name="publication_date" v-model="publication_date" fluid
                           inputId="on_label"
                           showIcon iconDisplay="input"/>
-              <label for="on_label">Date of publication</label>
+              <label for="on_label">{{ locale.date_of_publication_text }}</label>
               <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">
                 {{ $field.error?.message }}
               </Message>
@@ -174,7 +174,7 @@ const visible = ref(false);
           <FormField v-slot="$field" name="body" initialValue="" class="flex flex-col gap-1">
             <FloatLabel variant="on">
               <Textarea name="body" fluid id="over_label" v-model="body" rows="5" cols="30" style="resize: none"/>
-              <label for="on_label">Content</label>
+              <label for="on_label">{{ locale.content_text }}</label>
               <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">
                 {{ $field.error?.message }}
               </Message>
@@ -185,7 +185,7 @@ const visible = ref(false);
         <div class="card-element flex flex-col gap-1">
           <FormField v-slot="$field" name="isPublished" initialValue="" class="flex flex-col gap-1">
             <Checkbox name="isPublished" v-model="isPublished" binary variant="filled"/>
-            <label for="isPublished"> Publish immediately </label>
+            <label style="margin-left: 5px;" for="isPublished">{{ locale.publish_immediately_text }} </label>
             <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">
               {{ $field.error?.message }}
             </Message>
@@ -193,8 +193,8 @@ const visible = ref(false);
         </div>
 
         <div class="flex gap-2 mt-4">
-          <Button type="submit" style="margin-right: 8px;" severity="success" label="Add"/> <!-- Красная кнопка -->
-          <Button type="button" severity="secondary" label="Cancel" @click="visible = false"/> <!-- Кнопка Cancel -->
+          <Button type="submit" style="margin-right: 8px;" severity="success" label="Добавить"/>
+          <Button type="button" severity="secondary" label="Закрыть" @click="visible = false"/>
         </div>
       </Form>
     </div>
