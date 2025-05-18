@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 import Menubar from 'primevue/menubar';
 import {usePrimeVue} from "primevue/config";
 import {useToast} from "primevue/usetoast";
@@ -7,6 +7,21 @@ import {useArticlesStore} from "./store/pinia_index.js";
 import {zodResolver} from '@primevue/forms/resolvers/zod';
 import {z} from 'zod';
 import router from "./router/index.js";
+
+const isMobile = ref(false);
+
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth <=800;
+};
+
+onMounted(() => {
+  checkScreenSize();
+  window.addEventListener('resize', checkScreenSize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkScreenSize);
+});
 
 const locale = usePrimeVue().config.locale;
 const toast = useToast();
@@ -106,29 +121,35 @@ const visible = ref(false);
   <Toast/>
   <h1>{{ locale.articleTitle }}</h1>
   <div class="card-strict flex justify-content-center">
-    <Menubar :model="items">
-      <template #item="{ item, props, hasSubmenu }">
-        <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
-          <a v-ripple :href="href" v-bind="props.action" @click="navigate">
-            <span :class="item.icon"/>
-            <span>{{ item.label }}</span>
-          </a>
-        </router-link>
-        <a v-else v-ripple :href="item.url" :target="item.target" v-bind="props.action">
-          <span :class="item.icon"/>
-          <span>{{ item.label }}</span>
-          <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down"/>
-        </a>
-      </template>
-    </Menubar>
+    <Menubar :model="items" :breakpoints="{'960px': 'menu'}">
+  <template #start>
+    <span class="p-menubar-button" v-if="isMobile">
+      <i class="pi pi-bars"></i>
+    </span>
+  </template>
+  <template #item="{ item, props, hasSubmenu }">
+    <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
+      <a v-ripple :href="href" v-bind="props.action" @click="navigate">
+        <span :class="item.icon"/>
+        <span class="p-menuitem-text">{{ item.label }}</span>
+      </a>
+    </router-link>
+    <a v-else v-ripple :href="item.url" :target="item.target" v-bind="props.action">
+      <span :class="item.icon"/>
+      <span class="p-menuitem-text">{{ item.label }}</span>
+      <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down p-submenu-icon"/>
+    </a>
+  </template>
+</Menubar>
   </div>
   <main>
     <RouterView/>
     <Toast/>
   </main>
 
-  <Dialog v-model:visible="visible" modal header="Добавить статью" :style="{ width: '50rem' }"
-          :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+  <Dialog v-model:visible="visible" modal header="Добавить статью"
+        :style="{ width: '50rem' }"
+        :breakpoints="{ '768px': '90vw', '480px': '95vw' }">
     <div class="card flex justify-center">
       <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit"
             class="flex flex-col gap-0 w-full sm:w-56">
@@ -202,7 +223,5 @@ const visible = ref(false);
 </template>
 
 <style scoped>
-h1 {
-  margin: 40px 0 0;
-}
+
 </style>

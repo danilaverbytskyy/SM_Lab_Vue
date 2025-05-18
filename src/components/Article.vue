@@ -62,8 +62,8 @@ const confirm1 = () => {
     <h2>{{ title }}</h2>
     <div v-if="props.author">
       <p :style="{ fontStyle: authorFontStyle}">{{ authorNameInUpperCase }}</p>
-      <p v-if="isPublished">Опубликована</p>
-      <p v-else>Не опубликована</p>
+      <p v-if="props.isPublished">Опубликована</p>
+<p v-else>Не опубликована</p>
         <Toast/>
         <ConfirmDialog></ConfirmDialog>
         <div class="card flex flex-wrap gap-2 justify-center">
